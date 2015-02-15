@@ -26,7 +26,7 @@ from scipy import fftpack
 import cv2
 import numpy as np
 import pylab as py
-import radialProfile
+import radialprofile
 
 def main(imagefile = "SH.png"):
 		
