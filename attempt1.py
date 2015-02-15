@@ -3,6 +3,8 @@
 #
 #  attempt1.py
 #  
+#  Attempt to read image into an array and transform into binary 2D array
+#  
 #  Copyright 2015 Ohm <ohm@ohm-S400CA>
 #  
 #  This program is free software; you can redistribute it and/or modify
@@ -23,6 +25,14 @@
 #  
 
 import numpy as np
+from numpy.lib.stride_tricks import as_strided
+from astroML.correlation import two_point
+from scipy.ndimage import imread
+from matplotlib import rc
+rc('font',**{'family':'sans-serif','sans-serif':['Helvetica']})
+## for Palatino and other serif fonts use:
+#rc('font',**{'family':'serif','serif':['Palatino']})
+rc('text', usetex=True)
 
 def rolling_window_lastaxis(a, window):
     """Directly taken from Erik Rigtorp's post to numpy-discussion.
@@ -49,12 +59,17 @@ def rolling_window(a, window):
 
 def main():
 	
+	img = imread('data/IsoToRaster01.jpg')
+	
 	filtsize = (3, 3)
 	a = np.zeros((10,10), dtype=np.float)
 	a[5:7,5] = 1
 	
 	b = rolling_window(a, filtsize)
 	blurred = b.mean(axis=-1).mean(axis=-1)
+	
+	plt.imshow(img, cmap=plt.cm.gray)
+	plt.show()
 	
 	return 0
 
