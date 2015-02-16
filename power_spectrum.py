@@ -36,7 +36,8 @@ def main(imagefile = "IsoToRaster01_small.jpg"):
 	 
 	# Take the fourier transform of the image.
 	F1 = fftpack.fft2(im_bw)
-	 
+	#F1 = cv2.dft(np.float32(im_bw),flags = cv2.DFT_COMPLEX_OUTPUT)
+
 	# Now shift the quadrants around so that low spatial frequencies are in
 	# the center of the 2D fourier transformed image.
 	F2 = fftpack.fftshift( F1 )
